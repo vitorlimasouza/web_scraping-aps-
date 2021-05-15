@@ -1,11 +1,12 @@
-def format_data(data):
+def format_data(dataframe):
     list_data = []
-    for i in data:
+    for data in dataframe:
         temporary_data = {}
-        temporary_data['local'] = i['local']
-        temporary_data['casos'] = format_number(i['casos'])
-        temporary_data['casos por milhão'] = format_number(i['casos por milhão'])
-        temporary_data['mortes'] = format_number(i['mortes'])
+        temporary_data['local'] = data['local']
+        temporary_data['casos'] = format_number(data['casos'])
+        temporary_data['novos casos'] = format_number(data['novos casos'])
+        temporary_data['casos por milhão'] = format_number(data['casos por milhão'])
+        temporary_data['mortes'] = format_number(data['mortes'])
         list_data.append(temporary_data)
     return list_data
 

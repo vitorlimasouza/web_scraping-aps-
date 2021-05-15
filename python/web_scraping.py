@@ -13,13 +13,19 @@ def scraping():
     table_covid = str(soup.find(name='table'))
     table_covid = pandas.read_html(table_covid)[0]
 
-    data_covid = table_covid[['Local', 'Total de casos', 'Casos a cada um milhão de pessoas', 'Mortes']]
-    data_covid.columns = ['local', 'casos', 'casos por milhão', 'mortes']
+    data_covid = table_covid[[
+        'Local',
+        'Total de casos', 
+        'Novos casos (1 dia*)', 
+        'Casos a cada um milhão de pessoas', 
+        'Mortes'
+        ]]
+    data_covid.columns = ['local', 'casos', 'novos casos', 'casos por milhão', 'mortes']
     data_covid = data_covid.to_dict('records')
 
-    js = json.dumps(format_data(data_covid))
-    arquivo = open("../data.json", 'w')
-    arquivo.write(js)
-    arquivo.close()
+    data = json.dumps(format_data(data_covid))
+    file = open("../data.json", 'w')
+    file.write(data)
+    file.close()
 
 scraping()
